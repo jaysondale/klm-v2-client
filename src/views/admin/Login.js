@@ -39,6 +39,7 @@ import {
 // core components
 import DemoNavbar from "components/Navbars/DemoNavbar.js";
 import SimpleFooter from "components/Footers/SimpleFooter.js";
+import { Redirect } from "react-router-dom";
 
 class Login extends React.Component {
     constructor(props) {
@@ -71,16 +72,22 @@ class Login extends React.Component {
 
     handleLogin(e) {
         e.preventDefault();
-        this.props.dispatch(
+        const { dispatch, history } = this.props;
+        dispatch(
             login(this.state.email,
             this.state.password)
         ).then(() => {
-            // redirect
-            console.log('success!');
+            //history.push("/admin");
+            //window.location.reload();
         })
     }
 
   render() {
+
+    if (this.props.isLoggedIn) {
+        console.log(this.props);
+        return <Redirect to="/admin" />
+    }
     return (
       <>
         <DemoNavbar />

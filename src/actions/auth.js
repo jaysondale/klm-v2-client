@@ -19,17 +19,48 @@ export const register = (name, email, password) => (dispatch) => {
                 payload: response.body.message
             });
             return Promise.resolve();
+        },
+        err => {
+            dispatch({
+                type: REGISTER_FAIL
+            });
+            dispatch({
+                type: SET_MESSAGE,
+                payload: err.message
+            });
+            return Promise.reject();
         }
     )
 }
 
 export const login = (email, password) => (dispatch) => {
     return AuthService.login(email, password).then(
-        data => {
-            console.log(data);
+        response => {
             dispatch({
                 type: LOGIN_SUCCESS,
-                payload: {user: data}
+                payload: {user: response.user}
+            });
+            
+            return Promise.resolve();
+        },
+        err => {
+            dispatch({
+                type: LOGIN_FAIL
+            });
+            dispatch({
+                type: SET_MESSAGE,
+                payload: err.message
+            });
+            return Promise.reject();
+        }
+    )
+}
+
+export const logout = (refreshToken) => (dispatch) => {
+    return AuthService.logout(refreshToken).then(
+        response => {
+            dispatch({
+                type: LOGOUT
             });
         }
     )

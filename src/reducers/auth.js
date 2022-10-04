@@ -22,12 +22,18 @@ export default function (state = initialState, action) {
                 ...state,
                 isLoggedIn: false
             };
-        case LOGIN_SUCCESS :
+        case LOGIN_SUCCESS:
             return {
                 ...state,
                 user: payload.user,
                 isLoggedIn: true,
-            }
+            };
+        case LOGOUT:
+            return {
+                ...state,
+                isLoggedIn: false,
+                user: null
+            };
         default:
             return state
     }

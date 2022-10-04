@@ -33,6 +33,7 @@ import Rentals from "views/Rentals";
 import { Provider } from "react-redux";
 import store from "store";
 import Admin from "views/admin/Admin";
+import AuthVerify from "common/auth-verify";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -72,6 +73,7 @@ root.render(
         />
         <Redirect to="/" />
       </Switch>
+      <AuthVerify />
     </BrowserRouter>
   </Provider>
   

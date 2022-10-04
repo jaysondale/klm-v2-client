@@ -47,10 +47,15 @@
     "not op_mini all"
   ],
   "dependencies": {
+    "@fullcalendar/daygrid": "^5.11.3",
+    "@fullcalendar/google-calendar": "^5.11.3",
+    "@fullcalendar/react": "^5.11.2",
     "@reduxjs/toolkit": "^1.8.5",
     "bootstrap": "4.3.1",
     "classnames": "2.3.1",
+    "email-validator": "^2.0.4",
     "headroom.js": "0.12.0",
+    "libphonenumber-js": "^1.10.13",
     "moment": "2.29.4",
     "nouislider": "14.1.1",
     "react": "18.2.0",

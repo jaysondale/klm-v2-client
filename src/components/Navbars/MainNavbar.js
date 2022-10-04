@@ -116,7 +116,7 @@ class MainNavbar extends React.Component {
                       <span className="nav-link-inner--text">Marina</span>
                     </DropdownToggle>
                     <DropdownMenu>
-                      <DropdownItem to="/landing-page" tag={Link}>
+                      <DropdownItem to="/rentals" tag={Link}>
                         Rentals
                       </DropdownItem>
                       <DropdownItem to="/profile-page" tag={Link}>
