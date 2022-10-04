@@ -24,8 +24,7 @@ import "assets/vendor/font-awesome/css/font-awesome.min.css";
 import "assets/scss/argon-dashboard-react.scss";
 import "assets/scss/argon-design-system-react.scss?v1.1.0";
 
-import Index from "views/Index.js";
-import Landing from "views/examples/Landing.js";
+import Landing from "views/Landing.js";
 import Login from "views/admin/Login.js";
 import Profile from "views/examples/Profile.js";
 import Register from "views/admin/Register.js";
@@ -34,6 +33,7 @@ import { Provider } from "react-redux";
 import store from "store";
 import Admin from "views/admin/Admin";
 import AuthVerify from "common/auth-verify";
+import ProtectedRoute from "ProtectedRoute";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -41,9 +41,8 @@ root.render(
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        <Route path="/" exact render={(props) => <Index {...props} />} />
         <Route
-          path="/landing-page"
+          path="/"
           exact
           render={(props) => <Landing {...props} />}
         />
@@ -67,9 +66,9 @@ root.render(
           exact
           render={(props) => <Rentals {...props} />}
         />
-        <Route
+        <ProtectedRoute
           path="/admin"
-          render={(props) => <Admin {...props} />}
+          component={Admin}
         />
         <Redirect to="/" />
       </Switch>

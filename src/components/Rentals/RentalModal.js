@@ -16,6 +16,7 @@ import {
     Modal,
     ModalBody,
     Row,
+    Table,
     UncontrolledCarousel,
 } from "reactstrap";
 
@@ -95,6 +96,25 @@ class RentalModal extends React.Component {
         }
     }
 
+    renderPrices(prices) {
+        return <Table>
+            <thead className="thead-light">
+                <tr>
+                    <th>Period</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {Object.keys(prices).map((key) => {
+                    return <tr>
+                        <th>{key}</th>
+                        <td>{prices[key]}</td>
+                    </tr>
+                })}
+            </tbody>
+        </Table>
+    }
+
     render() {
         const boatImages = [
             {
@@ -128,12 +148,13 @@ class RentalModal extends React.Component {
                     ><span aria-hidden={true}>×</span></button>
                 </div>
                 <ModalBody>
-                    <p>Selected index {this.props.boat ? this.props.boat.length : ""}</p>
                     <UncontrolledCarousel
                         interval={false}
                         items={boatImages}
                         className="mb-4"
                     />
+                    {this.props.boat ? this.renderPrices(this.props.boat.price) : ""}
+                    <h5 className="text-center">Make Reservation</h5>
                     <FormGroup className={(this.state.formErrors.name ? "has-danger" : "")}>
                         <Input className={(this.state.formErrors.name ? "is-invalid" : "")}
                             onChange={e => {this.setState({name: e.target.value})}}

@@ -41,7 +41,7 @@ import MainNavbar from "components/Navbars/MainNavbar.js";
 import CardsFooter from "components/Footers/CardsFooter.js";
 
 // index page sections
-import Download from "../IndexSections/Download.js";
+import Download from "./IndexSections/Download.js";
 
 class Landing extends React.Component {
   state = {};
@@ -86,7 +86,7 @@ class Landing extends React.Component {
                         <Button
                           className="btn-white mb-3 mb-sm-0"
                           color="default"
-                          href="https://demos.creative-tim.com/argon-design-system-react/#/documentation/alerts?ref=adsr-landing-page"
+                          href="/rentals"
                         >
                           <span className="btn-inner--text">View Rentals</span>
                         </Button>

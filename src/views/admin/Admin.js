@@ -2,7 +2,7 @@ import AdminNavbar from "components/Navbars/AdminNavbar";
 import Sidebar from "components/Sidebars/Sidebar";
 import { useEffect, useRef } from "react";
 import { connect } from "react-redux";
-import { Redirect, Route, Switch, useLocation } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 
 import routes from "./AdminRoutes";
 import ReservationCalendar from "./ReservationCalendar";
@@ -16,9 +16,7 @@ const Admin = (props) => {
         document.scrollingElement.scrollTop = 0;
         mainContent.current.scrollTop = 0;
     });
-    if (!props.isLoggedIn) {
-        return <Redirect to="/login" />;
-    }
+    
     return (
         <>
             <Sidebar
