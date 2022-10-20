@@ -1,5 +1,5 @@
 import MainNavbar from "components/Navbars/MainNavbar";
-import RentalModal from "components/Rentals/RentalModal";
+import RentalModal from "components/Modals/RentalModal";
 import { getAllBoats } from "queries/RentalQueries";
 import React from "react";
 

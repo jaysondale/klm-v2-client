@@ -4,21 +4,16 @@ import ReactDatetimeClass from "react-datetime";
 import { validate } from "email-validator";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import {
-    Badge,
     Button,
     ButtonGroup,
-    Col,
     FormGroup,
     Input,
-    InputGroup,
-    InputGroupAddon,
-    InputGroupText,
     Modal,
     ModalBody,
-    Row,
     Table,
     UncontrolledCarousel,
 } from "reactstrap";
+import DateRangePicker from "components/FormFields/DateRangePicker";
 
 
 class RentalModal extends React.Component {
@@ -61,6 +56,7 @@ class RentalModal extends React.Component {
     }
 
     validateDates() {
+        console.log(this.state.startDate <= this.state.endDate);
         if (this.state.startDate && this.state.endDate) {
             return this.state.startDate <= this.state.endDate;
         }
@@ -89,8 +85,15 @@ class RentalModal extends React.Component {
                 this.props.boat._id,
                 this.state.radioSelected == 0 ? "Kennisis" : "Redstone"
             ).then(response => {
-                if (response.status == 200) {
-                    // Handle success
+                switch (response.status) {
+                    case 200:
+                        alert("Reservation created successfully");
+                        break;
+                    case 401:
+                        // Handle token refresh
+                        break;
+                    default:
+                        alert("There was an error creating your reservation.");
                 }
             });
         }
@@ -183,103 +186,13 @@ class RentalModal extends React.Component {
                             <Button onClick={() => {this.setRadioButton(1)}} active={this.state.radioSelected === 1} color="secondary">Redstone</Button>
                         </ButtonGroup>
                     </FormGroup>
-                    <Row>
-                        <Col xs={6}>
-                            <FormGroup>
-                                <InputGroup className="input-group-alternative is-invalid">
-                                    <InputGroupAddon addonType="prepend">
-                                        <InputGroupText>
-                                            <i className="ni ni-calendar-grid-58" />
-                                        </InputGroupText>
-                                    </InputGroupAddon>
-                                    <ReactDatetimeClass
-                                        inputProps={{
-                                            placeholder: "Start Date",
-                                            className: this.state.formErrors.email ? "form-control is-invalid" : "form-control"
-                                        }}
-                                        timeFormat={false}
-                                        renderDay={(props, currentDate, selectedDate) => {
-                                            let classes = props.className;
-                                            if (
-                                                this.state.startDate &&
-                                                this.state.endDate &&
-                                                this.state.startDate._d + "" === currentDate._d + ""
-                                            ) {
-                                                classes += " start-date";
-                                            } else if (
-                                                this.state.startDate &&
-                                                this.state.endDate &&
-                                                new Date(this.state.startDate._d + "") <
-                                                new Date(currentDate._d + "") &&
-                                                new Date(this.state.endDate._d + "") >
-                                                new Date(currentDate._d + "")
-                                            ) {
-                                                classes += " middle-date";
-                                            } else if (
-                                                this.state.endDate &&
-                                                this.state.endDate._d + "" === currentDate._d + ""
-                                            ) {
-                                                classes += " end-date";
-                                            }
-                                            return (
-                                                <td {...props} className={classes}>
-                                                {currentDate.date()}
-                                                </td>
-                                            );
-                                            }}
-                                        onChange={e => {this.setState({startDate: e})}}
-                                    />
-                                </InputGroup>
-                            </FormGroup>
-                        </Col>
-                        <Col xs={6}>
-                            <FormGroup>
-                                <InputGroup className="input-group-alternative">
-                                    <InputGroupAddon addonType="prepend">
-                                        <InputGroupText>
-                                            <i className="ni ni-calendar-grid-58" />
-                                        </InputGroupText>
-                                    </InputGroupAddon>
-                                    <ReactDatetimeClass
-                                        inputProps={{
-                                            placeholder: "End Date"
-                                        }}
-                                        timeFormat={false}
-                                        renderDay={(props, currentDate, selectedDate) => {
-                                            let classes = props.className;
-                                            if (
-                                                this.state.startDate &&
-                                                this.state.endDate &&
-                                                this.state.startDate._d + "" === currentDate._d + ""
-                                            ) {
-                                                classes += " start-date";
-                                            } else if (
-                                                this.state.startDate &&
-                                                this.state.endDate &&
-                                                new Date(this.state.startDate._d + "") <
-                                                new Date(currentDate._d + "") &&
-                                                new Date(this.state.endDate._d + "") >
-                                                new Date(currentDate._d + "")
-                                            ) {
-                                                classes += " middle-date";
-                                            } else if (
-                                                this.state.endDate &&
-                                                this.state.endDate._d + "" === currentDate._d + ""
-                                            ) {
-                                                classes += " end-date";
-                                            }
-                                            return (
-                                                <td {...props} className={classes}>
-                                                {currentDate.date()}
-                                                </td>
-                                            );
-                                            }}
-                                        onChange={e => {this.setState({endDate: e})}}
-                                    />
-                                </InputGroup>
-                            </FormGroup>
-                        </Col>
-                    </Row>
+                    <DateRangePicker
+                        startDate={this.state.startDate}
+                        setStartDate={(startDate) => {this.setState({startDate})}}
+                        endDate={this.state.endDate}
+                        setEndDate={(endDate) => {this.setState({endDate})}}
+                        isError={this.state.formErrors.dates}
+                    />
                 </ModalBody>
                 <div className="modal-footer">
                     <Button onClick={this.makeReservation} color="primary">Reserve</Button>

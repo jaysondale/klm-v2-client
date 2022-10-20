@@ -1,4 +1,4 @@
-import { logout } from "actions/auth";
+import { logout, refresh } from "actions/auth";
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -9,11 +9,24 @@ class AuthVerify extends React.Component {
         super(props);
         props.history.listen(() => {
             if (props.user) {
-                if (Date.parse(props.user.tokens.access.expires) < Date.now()) {
-                    props.dispatch(logout(props.user.tokens.refresh.token))
-                    .then(() => {
-                        props.history.push('/login');
-                    });
+                const now = new Date();
+                console.log(Date.parse(props.user.tokens.refresh.expires));
+                console.log(now.getTime());
+                if (Date.parse(props.user.tokens.access.expires) < now.getTime()) {
+                    if (Date.parse(props.user.tokens.refresh.expires) < now.getTime()) {
+                        // If both tokens expired, need to re-authenticate user
+                        props.dispatch(logout(props.user.tokens.refresh.token))
+                        .then(() => {
+                            props.history.push('/login');
+                        });
+                    } else {
+                        // Fetch a new token
+                        props.dispatch(refresh(props.user.tokens.refresh.token))
+                        .then(() => {
+                            props.history.go(0);
+                        })
+                    }
+                    
                 }
             }
         })

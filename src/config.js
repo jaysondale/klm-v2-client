@@ -14,6 +14,9 @@ export default {
             resetPassword: "/auth/reset-password",
             sendVerificationEmail: "/auth/send-verification-email",
             verifyEmail: "/auth/verifyEmail"
+        },
+        reservations: {
+            root: "/reservations",
         }
     }
 }

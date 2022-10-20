@@ -65,3 +65,15 @@ export const logout = (refreshToken) => (dispatch) => {
         }
     )
 }
+
+export const refresh = (refreshToken) => (dispatch) => {
+    return AuthService.logout(refreshToken).then(
+        response => {
+            dispatch({
+                type: LOGIN_SUCCESS,
+                payload: {user: response.user}
+            });
+            return Promise.resolve();
+        }
+    )
+}

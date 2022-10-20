@@ -1,6 +1,5 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import googleCalendarPlugin from "@fullcalendar/google-calendar";
 import Header from "components/Headers/AdminHeader";
 import React from "react";
 import { connect } from "react-redux";
@@ -44,7 +43,7 @@ class ReservationCalendar extends React.Component {
                                         start: new Date(res.startDay),
                                         end: new Date(res.endDay),
                                         allDay: true,
-                                        title: `${res.requestName}`,
+                                        title: `${res.requestName} - ${res.boatName}`,
                                         url: '/',
                                         editable: true
                                     }
