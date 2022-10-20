@@ -1,0 +1,9 @@
+{
+    "verbose": true,
+    "moduleDirectories": ["node_modules", "src"],
+    "moduleFileExtensions": ["js", "jsx", "svg"],
+    "transform": {
+        "^.+\\.js$": "babel-jest",
+        "\\.svg$": "./src/utils/svg-transform"
+    }
+}
