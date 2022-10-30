@@ -7,6 +7,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import routes from "./AdminRoutes";
 import ReservationCalendar from "./ReservationCalendar";
 import ReservationManager from "./ReservationManager";
+import brandImg from "../../assets/img/brand/argon-react.png";
 
 const Admin = (props) => {
     const mainContent = useRef(null);
@@ -24,7 +25,7 @@ const Admin = (props) => {
                 routes={routes}
                 logo={{
                     innerLink: "/reservation-manager",
-                    imgSrc: require("../../assets/img/brand/argon-react.png"),
+                    imgSrc: brandImg,
                     imgAlt: "..."
                 }}
             />

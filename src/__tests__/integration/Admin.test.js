@@ -1,4 +1,7 @@
+/** @jest-environment jsdom */
+
 import { rest } from "msw";
+import React from "react";
 import { setupServer } from "msw/node";
 import { MemoryRouter } from "react-router-dom";
 import Admin from "views/admin/Admin";
@@ -11,6 +14,10 @@ const handlers = [
 const server = setupServer(...handlers);
 
 beforeAll(() => server.listen());
+
+beforeEach(() => {
+    localStorage.clear();
+})
 
 afterEach(() => server.resetHandlers());
 

@@ -5,5 +5,8 @@
     "transform": {
         "^.+\\.js$": "babel-jest",
         "\\.svg$": "./src/utils/svg-transform"
-    }
+    },
+    "setupFiles": ["jest-localstorage-mock"],
+    "resetMocks": false,
+    "setupFilesAfterEnv": ["./src/utils/setup-tests"]
 }
