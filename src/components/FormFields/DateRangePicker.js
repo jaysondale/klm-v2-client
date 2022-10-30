@@ -18,17 +18,16 @@ const DateRangePicker = (props) => {
             const startDate = new Date(props.startDate);
             const endDate = new Date(props.endDate);
             const currDate = new Date(date);
-            
             if (
                 endDate > currDate &&
                 startDate < currDate
             ) {
                 return " middle-date";
             }
-            if (endDate.toString() === currDate.toString()) {
+            if ((props.endDate._d ? props.endDate._d : props.endDate) + "" === date._d + "") {
                 return " end-date"
             }
-            if (startDate.toString() === currDate.toString()) {
+            if ((props.startDate._d ? props.startDate._d : props.startDate) + "" === date._d + "") {
                 return " start-date";
             }
         }
@@ -45,7 +44,7 @@ const DateRangePicker = (props) => {
                         </InputGroupText>
                     </InputGroupAddon>
                     <ReactDatetimeClass
-                        value={props.startDate ? new Date(props.startDate) : new Date()}
+                        value={props.startDate}
                         inputProps={{
                             placeholder: "Start Date",
                             className: props.isError ? "form-control is-invalid" : "form-control"
@@ -74,7 +73,7 @@ const DateRangePicker = (props) => {
                         </InputGroupText>
                     </InputGroupAddon>
                     <ReactDatetimeClass
-                        value={props.endDate ? new Date(props.endDate) : new Date()}
+                        value={props.endDate}
                         inputProps={{
                             placeholder: "End Date",
                             className: props.isError ? "form-control is-invalid" : "form-control"

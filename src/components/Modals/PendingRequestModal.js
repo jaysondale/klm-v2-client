@@ -139,9 +139,9 @@ class PendingRequestModal extends React.Component {
                     </InputGroup>
                 </FormGroup>
                 <DateRangePicker
-                    startDate={(this.props.reservation ? this.props.reservation.startDay : null)}
+                    startDate={(this.props.reservation ? new Date(this.props.reservation.startDay) : null)}
                     setStartDate={startDate => {this.props.setReservation({startDate})}}
-                    endDate={(this.props.reservation ? this.props.reservation.endDay : null)}
+                    endDate={(this.props.reservation ? new Date(this.props.reservation.endDay) : null)}
                     setEndDate={endDate => {this.props.setReservation({endDate})}}
                     isError={this.state.formErrors.dates}
                 />

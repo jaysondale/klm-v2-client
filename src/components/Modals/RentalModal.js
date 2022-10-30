@@ -190,7 +190,7 @@ class RentalModal extends React.Component {
                         startDate={this.state.startDate}
                         setStartDate={(startDate) => {this.setState({startDate})}}
                         endDate={this.state.endDate}
-                        setEndDate={(endDate) => {this.setState({endDate})}}
+                        setEndDate={(endDate) => {console.log(endDate); this.setState({endDate})}}
                         isError={this.state.formErrors.dates}
                     />
                 </ModalBody>
