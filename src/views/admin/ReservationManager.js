@@ -13,6 +13,8 @@ import {
 import Header from "components/Headers/AdminHeader";
 import { getPendingReservations } from "queries/ReservationQueries";
 import PendingRequestModal from "components/Modals/PendingRequestModal";
+import { getAllReservations } from "queries/ReservationQueries";
+import { refresh } from "actions/auth";
 
 
 class ReservationManager extends React.Component {

@@ -23,6 +23,7 @@ afterEach(() => server.resetHandlers());
 
 afterAll(() => server.close());
 
+/**
 test("Testing the test runner", () => {
     const reservationmanagerRoute = "/admin/reservation-manager"
     renderWithProviders(
@@ -32,3 +33,4 @@ test("Testing the test runner", () => {
     )
     expect(screen.getText())
 });
+ */
