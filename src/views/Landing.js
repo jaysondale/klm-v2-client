@@ -42,6 +42,7 @@ import CardsFooter from "components/Footers/CardsFooter.js";
 
 // index page sections
 import Download from "./IndexSections/Download.js";
+import MainFooter from "components/Footers/MainFooter.js";
 
 class Landing extends React.Component {
   state = {};
@@ -743,7 +744,7 @@ class Landing extends React.Component {
           </section>
           <Download />
         </main>
-        <CardsFooter />
+        <MainFooter />
       </>
     );
   }

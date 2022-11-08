@@ -13,6 +13,7 @@ import {
     Row,
     UncontrolledCarousel,
 } from "reactstrap";
+import MainFooter from "components/Footers/MainFooter";
 
 class Rentals extends React.Component {
     state = {
@@ -138,6 +139,7 @@ class Rentals extends React.Component {
                         boat={this.state.selectedBoat}
                     />
                 </section>
+                <MainFooter />
             </>
         )
     }

@@ -222,6 +222,22 @@ class MainNavbar extends React.Component {
                       Follow us on Instagram
                     </UncontrolledTooltip>
                   </NavItem>
+                  <NavItem>
+                    <NavLink
+                      className="nav-link-icon"
+                      href="tel:7057542352"
+                      id="tooltip356693868"
+                      target="_blank"
+                    >
+                      <i className="fa fa-phone" />
+                      <span className="nav-link-inner--text d-lg-none ml-2">
+                        Call Us
+                      </span>
+                    </NavLink>
+                    <UncontrolledTooltip delay={0} target="tooltip356693868">
+                      Call us
+                    </UncontrolledTooltip>
+                  </NavItem>
                 </Nav>
               </UncontrolledCollapse>
             </Container>
