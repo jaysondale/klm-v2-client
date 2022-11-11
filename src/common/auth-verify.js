@@ -10,14 +10,12 @@ class AuthVerify extends React.Component {
         props.history.listen(() => {
             if (props.user) {
                 const now = new Date();
-                console.log(Date.parse(props.user.tokens.refresh.expires));
-                console.log(now.getTime());
                 if (Date.parse(props.user.tokens.access.expires) < now.getTime()) {
                     if (Date.parse(props.user.tokens.refresh.expires) < now.getTime()) {
                         // If both tokens expired, need to re-authenticate user
                         props.dispatch(logout(props.user.tokens.refresh.token))
                         .then(() => {
-                            props.history.push('/login');
+                           props.history.push('/login');
                         });
                     } else {
                         // Fetch a new token
@@ -26,7 +24,6 @@ class AuthVerify extends React.Component {
                             props.history.go(0);
                         })
                     }
-                    
                 }
             }
         })

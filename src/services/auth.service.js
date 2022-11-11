@@ -57,10 +57,16 @@ class AuthService {
             body: JSON.stringify(body)
         }).then(response => {
             return response.json();
-        }).then(data => {
-            if (data.tokens) {
-                localStorage.setItem("user", JSON.stringify(data));
+        }).then(tokens => {
+            let user = {}
+            if (tokens.access) {
+                user = {
+                    ...JSON.parse(localStorage.getItem("user")),
+                    tokens: tokens
+                }
+                localStorage.setItem("user", JSON.stringify(user));
             }
+            return user;
         });
     }
 }

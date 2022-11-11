@@ -154,7 +154,7 @@ class MainFooter extends React.Component {
                   </NavItem>
                 </Nav>
               </div>
-              <div class="col-md-3 d-flex justify-content-md-end">
+              <div className="col-md-3 d-flex justify-content-md-end">
                 <div className=" copyright">
                   © {new Date().getFullYear()}{" "}
                   <a

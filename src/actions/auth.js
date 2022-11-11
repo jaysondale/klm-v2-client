@@ -67,7 +67,7 @@ export const logout = (refreshToken) => (dispatch) => {
 }
 
 export const refresh = (refreshToken) => (dispatch) => {
-    return AuthService.logout(refreshToken).then(
+    return AuthService.refresh(refreshToken).then(
         response => {
             dispatch({
                 type: LOGIN_SUCCESS,

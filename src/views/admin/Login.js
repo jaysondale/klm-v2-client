@@ -77,8 +77,8 @@ class Login extends React.Component {
             login(this.state.email,
             this.state.password)
         ).then(() => {
-            //history.push("/admin");
-            //window.location.reload();
+            history.push("/admin");
+            window.location.reload();
         })
     }
 
